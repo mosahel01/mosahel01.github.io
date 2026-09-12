@@ -3,41 +3,69 @@ import { profile } from '../data/portfolio';
 import Icon from './Icon.astro';
 ---
 
-<section id="contact" class="grid w-full items-center justify-center gap-2 px-6 text-center">
+<section id="contact" class="flex w-full flex-col items-center justify-center gap-4 px-6 text-center">
   <h2 class="showcase-heading">Get in Touch</h2>
-  <!-- <p class="max-w-lg text-sm"> -->
-  <!--   Contact me at -->
-  <!--   <a href={`mailto:${profile.email}`} class="underline" >{profile.email}</a> -->
-    <!-- or through this form. -->
-  <!-- </p> -->
+  <p class="max-w-lg text-sm">
+    Please contact me directly at
+    <a href={`mailto:${profile.email}`} class="underline">{profile.email}</a>
+    or through this form.
+  </p>
 
   <form
     id="contact-form"
     data-recipient={profile.email}
-    class="mt-4 flex w-[min(100%,38rem)] flex-col"
+    class="contact-card mt-5 flex flex-col text-left"
   >
+    <label for="contact-email" class="mb-2 text-sm font-medium">
+      Your email
+    </label>
     <input
+      id="contact-email"
       type="email"
       name="email"
-      placeholder="Your email"
+      placeholder="you@example.com"
       required
       class="field"
     />
+    <label for="contact-message" class="mb-2 mt-5 text-sm font-medium">
+      Your message
+    </label>
     <textarea
+      id="contact-message"
       name="message"
-      placeholder="Your message"
+      placeholder="Write something here..."
       required
       class="field field-textarea"
     ></textarea>
-    <button type="submit" class="submit-btn">
+    <button type="submit" class="submit-btn mt-4">
       Submit
-      <Icon name="send" size={12} iconClass="opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1" />
+      <Icon name="send" size={12} iconClass="opacity-70" />
     </button>
   </form>
 </section>
 
+<div id="toast" class="toast" role="status" aria-live="polite">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+    <polyline points="22 4 12 14.01 9 11.01" />
+  </svg>
+  Message Sent!
+</div>
+
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const toast = document.getElementById('toast') as HTMLElement | null;
+
+  let toastTimer: number | undefined;
+  const showToast = () => {
+    if (!toast) return;
+    toast.classList.add('is-visible');
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(() => {
+      toast.classList.remove('is-visible');
+    }, 3200);
+  };
+
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
     const recipient = form.dataset.recipient;
@@ -48,5 +76,6 @@ import Icon from './Icon.astro';
     const subject = encodeURIComponent('Contact from portfolio');
     const body = encodeURIComponent(`Sent from: ${email}\n\n${message}`);
     window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    showToast();
   });
 </script>
