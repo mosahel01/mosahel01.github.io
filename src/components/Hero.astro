@@ -10,7 +10,8 @@ import Icon from './Icon.astro';
         Hi, I'm {profile.firstName} 👋
       </h1>
       <span class="max-w-[600px] pt-1 text-base md:text-xl">
-        I'm a {profile.role.toLowerCase()} in {profile.location}. {profile.tagline}
+        <!-- I'm a {profile.role.toLowerCase()} in {profile.location}. {profile.tagline} -->
+        I'm a {profile.role.toLowerCase()}. {profile.tagline}
         <a
           href={profile.github}
           target="_blank"
