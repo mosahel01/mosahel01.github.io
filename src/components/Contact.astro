@@ -1,19 +1,15 @@
 ---
-import { profile } from '../data/portfolio';
 import Icon from './Icon.astro';
 ---
 
 <section id="contact" class="flex w-full flex-col items-center justify-center gap-4 px-6 text-center">
   <h2 class="showcase-heading">Get in Touch</h2>
   <p class="max-w-lg text-sm">
-    Please contact me directly at
-    <a href={`mailto:${profile.email}`} class="underline">{profile.email}</a>
-    or through this form.
+    Send me a message and I'll get back to you soon.
   </p>
 
   <form
     id="contact-form"
-    data-recipient={profile.email}
     class="contact-card mt-5 flex flex-col text-left"
   >
     <label for="contact-email" class="mb-2 text-sm font-medium">
@@ -68,14 +64,7 @@ import Icon from './Icon.astro';
 
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const recipient = form.dataset.recipient;
-    if (!recipient) return;
-    const fd = new FormData(form);
-    const email = String(fd.get('email') || '');
-    const message = String(fd.get('message') || '');
-    const subject = encodeURIComponent('Contact from portfolio');
-    const body = encodeURIComponent(`Sent from: ${email}\n\n${message}`);
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    form.reset();
     showToast();
   });
 </script>

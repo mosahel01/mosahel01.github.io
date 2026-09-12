@@ -453,9 +453,8 @@
 
 .toast {
   position: fixed;
-  left: 50%;
-  bottom: 5.5rem;
-  transform: translate(-50%, -50%);
+  top: 1.5rem;
+  right: 1.5rem;
   z-index: 60;
   display: flex;
   align-items: center;
@@ -473,6 +472,7 @@
   opacity: 0;
   pointer-events: none;
   white-space: nowrap;
+  transform: translateY(-0.5rem);
   transition:
     opacity 0.25s ease,
     transform 0.25s ease;
@@ -480,7 +480,7 @@
 
 .toast.is-visible {
   opacity: 1;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
