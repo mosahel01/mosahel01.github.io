@@ -1,25 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
+import Dock from '../components/Dock.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
-import Skills from '../components/Skills.astro';
-import Projects from '../components/Projects.astro';
 import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
 import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <Layout>
-  <a href="#main" class="skip-link">Skip to content</a>
-  <Header />
-  <main id="main">
+  <main class="mx-auto flex min-h-dvh w-full max-w-2xl flex-col space-y-10 px-6 pb-24 pt-4 sm:pt-6 sm:pb-32">
     <Hero />
     <About />
-    <Skills />
-    <Projects />
     <Experience />
+    <Projects />
     <Contact />
   </main>
-  <Footer />
+
+  <Dock />
 </Layout>

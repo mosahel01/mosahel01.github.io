@@ -1,36 +1,21 @@
 ---
-import { profile } from '../data/portfolio';
----
 
-<section id="about" class="container-site py-20 md:py-28">
-  <div class="grid gap-10 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-16">
-    <div>
-      <p class="eyebrow mb-4">01 — About</p>
-      <h2 class="section-title mb-4">Engineering, end to end.</h2>
-      <p class="prose-body text-sm">
-        Computer science student focused on building scalable backend systems and high-performance interfaces.
-      </p>
-    </div>
-
-    <div class="prose-body space-y-5 text-[1.02rem]">
-      <p>
-        I'm {profile.firstName}. I spend most of my time on the parts of a system users never see: APIs that stay
-        fast under load, jobs that run reliably in the background, databases that don't become a bottleneck, and
-        tooling that keeps development moving.
-      </p>
-      <p>
-        My day-to-day is Go, Node.js, and Java on the backend, with TypeScript and React when the work needs an
-        interface. I'm comfortable owning a feature from SQL migration to deployed service.
-      </p>
-      <p>
-        Recently I built an automation tool that cut local development setup time roughly in half — the kind of
-        problem I like most: slow, manual work turned into a fast, repeatable command. I run Linux (Arch, in case
-        you were wondering) and I'm actively growing toward more distributed, production-focused engineering.
-      </p>
-      <p class="text-sm">
-        Currently learning: deeper distributed systems, Go concurrency in anger, and infrastructure that survives
-        real traffic.
-      </p>
-    </div>
+<section id="about" class="mx-auto w-full max-w-2xl">
+  <h2 class="section-heading mb-4">About</h2>
+  <div class="prose-body space-y-4">
+    <p>
+      I'm Sahil — a computer science student who's in it for the backend. The API that stays fast when traffic
+      spikes, the job that runs at 3am without drama, the database that doesn't become a bottleneck, the script
+      that finally gets rid of some tedious manual work.
+    </p>
+    <p>
+      Most days that means Go, Node.js, or Java with TypeScript and React when the work needs an interface. I'm
+      comfortable owning a feature from schema to deployed service, and I run Linux — Arch, in case you were
+      wondering.
+    </p>
+    <p>
+      Right now I'm reading up on distributed systems and pushing myself toward projects that involve real
+      traffic, real failure, and real scale.
+    </p>
   </div>
 </section>

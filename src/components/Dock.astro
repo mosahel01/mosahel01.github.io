@@ -1,0 +1,75 @@
+---
+import { profile } from '../data/portfolio';
+import Icon from './Icon.astro';
+---
+
+<div class="dock-backdrop" aria-hidden="true"></div>
+
+<nav class="dock" aria-label="Main navigation">
+  <div class="dock-pill">
+    <a href="#hero" class="dock-item" title="Home" aria-label="Home">
+      <Icon name="home" size={16} />
+    </a>
+
+    <span class="dock-separator" aria-hidden="true"></span>
+
+    <a
+      href={profile.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="dock-item"
+      title="GitHub"
+      aria-label="GitHub"
+    >
+      <Icon name="github" size={16} />
+    </a>
+    <a
+      href={profile.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="dock-item"
+      title="LinkedIn"
+      aria-label="LinkedIn"
+    >
+      <Icon name="linkedin" size={16} />
+    </a>
+    <a href={`mailto:${profile.email}`} class="dock-item" title="Email" aria-label="Email">
+      <Icon name="mail" size={16} />
+    </a>
+
+    <span class="dock-separator" aria-hidden="true"></span>
+
+    <button id="theme-toggle" type="button" class="dock-item" title="Toggle theme" aria-label="Toggle theme">
+      <Icon name="moon" size={16} iconClass="block dark:hidden" />
+      <Icon name="sun" size={16} iconClass="hidden dark:block" />
+    </button>
+  </div>
+</nav>
+
+<script>
+  // Theme toggle
+  const toggle = document.getElementById('theme-toggle');
+  toggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  // Staggered blur-fade reveal
+  const revealEls = document.querySelectorAll<HTMLElement>('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.1 },
+    );
+    revealEls.forEach((el) => observer.observe(el));
+  } else {
+    revealEls.forEach((el) => el.classList.add('is-visible'));
+  }
+</script>

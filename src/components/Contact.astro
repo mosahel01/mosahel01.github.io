@@ -1,53 +1,52 @@
 ---
-import { socials, status } from '../data/portfolio';
+import { profile } from '../data/portfolio';
 import Icon from './Icon.astro';
 ---
 
-<section id="contact" class="container-site py-20 md:py-28">
-  <div class="grid gap-12 md:grid-cols-[minmax(0,6fr)_minmax(0,6fr)] md:gap-16">
-    <div>
-      <p class="eyebrow mb-4">05 — Contact</p>
-      <h2 class="section-title mb-4">Let's talk about building systems.</h2>
-      <p class="prose-body mb-8 max-w-md">
-        I'm always up for a conversation about backend engineering, infrastructure, or a project that needs a
-        serious engineer. Email works best.
-      </p>
+<section id="contact" class="grid w-full items-center justify-center gap-2 px-6 text-center">
+  <h2 class="showcase-heading">Get in Touch</h2>
+  <p class="max-w-lg text-sm">
+    Please contact me directly at
+    <a href={`mailto:${profile.email}`} class="underline">{profile.email}</a>
+    or through this form.
+  </p>
 
-      <div class="flex items-center gap-3 rounded-xl border border-border bg-surface p-4">
-        <span class="status-dot" aria-hidden="true"></span>
-        <div>
-          <p class="text-sm font-semibold text-fg">{status.label}</p>
-          <p class="text-sm text-muted">{status.detail}</p>
-        </div>
-      </div>
-    </div>
-
-    <ul class="flex flex-col gap-3">
-      {
-        socials.map((social) => (
-          <li>
-            <a
-              href={social.href}
-              target={social.href.startsWith('http') ? '_blank' : undefined}
-              rel="noopener noreferrer"
-              class="card card-hover group flex items-center gap-4 p-4"
-            >
-              <span class="grid h-11 w-11 flex-shrink-0 place-items-center rounded-lg border border-border bg-accent-soft text-accent transition-colors group-hover:bg-accent group-hover:text-accent-contrast">
-                <Icon name={social.icon} size={20} />
-              </span>
-              <span class="min-w-0 flex-1">
-                <span class="block font-mono text-[0.68rem] uppercase tracking-[0.14em] text-faint">
-                  {social.label}
-                </span>
-                <span class="block truncate font-medium text-fg group-hover:text-accent">
-                  {social.value}
-                </span>
-              </span>
-              <Icon name="arrow-right" size={16} iconClass="text-faint transition-colors group-hover:text-accent" />
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
+  <form
+    id="contact-form"
+    data-recipient={profile.email}
+    class="mt-4 flex w-[min(100%,38rem)] flex-col"
+  >
+    <input
+      type="email"
+      name="email"
+      placeholder="Your email"
+      required
+      class="field"
+    />
+    <textarea
+      name="message"
+      placeholder="Your message"
+      required
+      class="field field-textarea"
+    ></textarea>
+    <button type="submit" class="submit-btn">
+      Submit
+      <Icon name="send" size={12} iconClass="opacity-70 group-hover:translate-x-1 group-hover:-translate-y-1" />
+    </button>
+  </form>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const recipient = form.dataset.recipient;
+    if (!recipient) return;
+    const fd = new FormData(form);
+    const email = String(fd.get('email') || '');
+    const message = String(fd.get('message') || '');
+    const subject = encodeURIComponent('Contact from portfolio');
+    const body = encodeURIComponent(`Sent from: ${email}\n\n${message}`);
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  });
+</script>

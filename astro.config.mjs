@@ -8,6 +8,9 @@ export default defineConfig({
   // site is served from the domain root and "base" must be left at its default ("/").
   // Do NOT set base to "/mosahel01.github.io" for a user/organization pages repo.
   site: 'https://mosahel01.github.io',
+  devToolbar: {
+    enabled: false,
+  },
   vite: {
     plugins: [tailwindcss()],
   },

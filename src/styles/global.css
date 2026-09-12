@@ -1,69 +1,72 @@
 @import "tailwindcss";
-@import "@fontsource-variable/inter/wght.css";
-@import "@fontsource-variable/jetbrains-mono/wght.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Design tokens
+   Design tokens — light by default, dark via the `.dark` class on <html>
 --------------------------------------------------------------------------- */
 
 :root {
-  /* Dark theme (default) */
-  --background: #0b0e14;
-  --surface: #10141d;
-  --surface-2: #161b26;
-  --surface-hover: #1b2230;
-  --foreground: #e8ebf1;
-  --muted: #9aa3b2;
-  --faint: #677085;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.12);
-  --accent: #8ab4ff;
-  --accent-hover: #a9c6ff;
-  --accent-soft: rgba(138, 180, 255, 0.12);
-  --accent-contrast: #0b0e14;
-  --selection-bg: rgba(138, 180, 255, 0.25);
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --background: 0 0% 100%;
+  --foreground: 210 11.1% 3.53%;
+  --card: 0 0% 100%;
+  --card-foreground: 210 11.1% 3.53%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 210 11.1% 3.53%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 96.1%;
+  --accent-foreground: 0 0% 9%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 0 0% 3.9%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #f6f7f9;
-    --surface: #ffffff;
-    --surface-2: #eef0f4;
-    --surface-hover: #e8ebf1;
-    --foreground: #171c26;
-    --muted: #525b6d;
-    --faint: #8b93a3;
-    --border: rgba(15, 23, 42, 0.1);
-    --border-strong: rgba(15, 23, 42, 0.16);
-    --accent: #1f5fd0;
-    --accent-hover: #174bb0;
-    --accent-soft: rgba(31, 95, 208, 0.09);
-    --accent-contrast: #ffffff;
-    --selection-bg: rgba(31, 95, 208, 0.16);
-    --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 16px rgba(15, 23, 42, 0.05);
-  }
+.dark {
+  --background: 210 10% 8%;
+  --foreground: 0 0% 98%;
+  --card: 210 10% 8%;
+  --card-foreground: 0 0% 98%;
+  --popover: 210 10% 12%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 0 0% 16%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 16%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 0 0% 16%;
+  --accent-foreground: 0 0% 98%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 0 0% 83.1%;
 }
 
 @theme {
-  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system,
+  --font-sans: "Ubuntu", "Ubuntu Fallback", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, SFMono-Regular,
-    Menlo, Consolas, monospace;
 
-  --color-bg: var(--background);
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-surface-hover: var(--surface-hover);
-  --color-fg: var(--foreground);
-  --color-muted: var(--muted);
-  --color-faint: var(--faint);
-  --color-border: var(--border);
-  --color-border-strong: var(--border-strong);
-  --color-accent: var(--accent);
-  --color-accent-hover: var(--accent-hover);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-contrast: var(--accent-contrast);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
 }
 
 /* ---------------------------------------------------------------------------
@@ -73,26 +76,24 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
     -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-family: var(--font-sans);
-    font-feature-settings: "cv11", "ss01";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-x: clip;
   }
 
   ::selection {
-    background-color: var(--selection-bg);
+    background-color: hsl(var(--accent));
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid hsl(var(--ring));
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -112,215 +113,425 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Reusable building blocks
+   Shared pieces
 --------------------------------------------------------------------------- */
 
-@layer components {
-  .container-site {
-    width: min(100% - 2.5rem, 1080px);
-    margin-inline: auto;
-  }
+.avatar {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--muted));
+}
 
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
+.avatar-hero {
+  width: 7rem;
+  height: 7rem;
+  font-size: 2rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
 
-  .section-title {
-    font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    font-weight: 650;
-    color: var(--foreground);
+@media (min-width: 48rem) {
+  .avatar-hero {
+    width: 8rem;
+    height: 8rem;
   }
+}
 
-  .prose-body {
-    color: var(--muted);
-    line-height: 1.75;
-  }
+.avatar-row {
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
 
-  .card {
-    background-color: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 0.875rem;
-    box-shadow: var(--shadow-card);
-    transition:
-      border-color 0.2s ease,
-      transform 0.2s ease,
-      background-color 0.2s ease;
-  }
+.section-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
 
-  .card-hover:hover {
-    border-color: var(--border-strong);
-    background-color: var(--surface-hover);
-    transform: translateY(-2px);
-  }
+.showcase-heading {
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  text-align: center;
+  color: hsl(var(--foreground));
+}
 
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    padding: 0.25rem 0.625rem;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background-color: var(--surface-2);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
-    color: var(--muted);
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease,
-      background-color 0.2s ease;
+@media (min-width: 40rem) {
+  .showcase-heading {
+    font-size: 1.875rem;
   }
+}
 
-  a.chip:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-    background-color: var(--accent-soft);
-  }
+.prose-body {
+  max-width: 65ch;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.875rem;
+  line-height: 1.625;
+  text-wrap: pretty;
+}
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    height: 2.625rem;
-    padding-inline: 1.125rem;
-    border-radius: 0.625rem;
-    font-size: 0.875rem;
-    font-weight: 550;
-    letter-spacing: -0.01em;
-    transition:
-      background-color 0.2s ease,
-      border-color 0.2s ease,
-      color 0.2s ease,
-      transform 0.15s ease;
-  }
-
-  .btn:active {
-    transform: translateY(1px);
-  }
-
-  .btn-primary {
-    background-color: var(--accent);
-    color: var(--accent-contrast);
-  }
-  .btn-primary:hover {
-    background-color: var(--accent-hover);
-  }
-
-  .btn-secondary {
-    background-color: var(--surface);
-    color: var(--foreground);
-    border: 1px solid var(--border-strong);
-  }
-  .btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .link-underline {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--muted);
-    transition: color 0.2s ease;
-  }
-  .link-underline::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.35;
-    transition: opacity 0.2s ease;
-  }
-  .link-underline:hover {
-    color: var(--accent);
-  }
-  .link-underline:hover::after {
-    opacity: 1;
-  }
-
-  .skip-link {
-    position: fixed;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 100;
-    padding: 0.5rem 0.875rem;
-    border-radius: 0.5rem;
-    background: var(--accent);
-    color: var(--accent-contrast);
-    font-size: 0.8rem;
-    font-weight: 600;
-    transform: translateY(-300%);
-    transition: transform 0.2s ease;
-  }
-  .skip-link:focus-visible {
-    transform: translateY(0);
-  }
-
-  .site-nav.scrolled {
-    background: color-mix(in srgb, var(--background) 84%, transparent);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-  }
+/* Left-aligned section (About / Work) */
+.showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 /* ---------------------------------------------------------------------------
-   Decorative background
+   Cards
 --------------------------------------------------------------------------- */
 
-.bg-grid {
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 35%, transparent 75%);
+.experience-card {
+  display: flex;
+  border-radius: 0.5rem;
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+}
+
+.experience-card summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.experience-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.experience-card summary .chevron {
+  transition: transform 0.3s ease-out;
+}
+
+.experience-card[open] summary .chevron {
+  transform: rotate(90deg);
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  background: #f9fafb;
+  padding: 1rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dark .post-card {
+  background: color-mix(in srgb, #fff 5%, transparent);
+}
+
+.post-card:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.dark .post-card:hover {
+  background: color-mix(in srgb, #fff 10%, transparent);
+  border-color: #4b5563;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: 1px solid rgb(0 0 0 / 0.05);
+  border-radius: 0.5rem;
+  background: #f9fafb;
+  padding: 1rem;
+  transition:
+    background-color 0.15s ease-out,
+    border-color 0.15s ease-out,
+    box-shadow 0.15s ease-out,
+    transform 0.15s ease-out;
+}
+
+.dark .project-card {
+  background: color-mix(in srgb, #fff 5%, transparent);
+  border-color: #4b5563;
+}
+
+.project-card:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  transform: translateY(-0.25rem);
+}
+
+.dark .project-card:hover {
+  background: color-mix(in srgb, #fff 10%, transparent);
+  border-color: #4b5563;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+}
+
+.project-card:active {
+  transform: scale(0.98);
+}
+
+/* ---------------------------------------------------------------------------
+   Chips
+--------------------------------------------------------------------------- */
+
+.chip-project {
+  border-radius: 0.375rem;
+  background: #e5e7eb;
+  color: #4b5563;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.375rem 0.5rem;
+}
+
+.dark .chip-project {
+  background: color-mix(in srgb, #fff 10%, transparent);
+  color: #d1d5db;
+}
+
+.chip-experience {
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background: #f9fafb;
+  color: #4b5563;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.dark .chip-experience {
+  border-color: #4b5563;
+  background: color-mix(in srgb, #64748b 30%, transparent);
+  color: #d1d5db;
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons
+--------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2rem;
+  border-radius: 0.375rem;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.btn-secondary {
+  border: 1px solid hsl(var(--input));
+  background: hsl(var(--background));
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+}
+
+.btn-secondary:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.btn-ghost {
+  height: 2.25rem;
+  border: 1px solid hsl(var(--input));
+  border-radius: 0.375rem;
+  background: hsl(var(--background));
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  font-weight: 500;
+  padding: 0 1rem;
+}
+
+.btn-ghost:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* ---------------------------------------------------------------------------
+   Form
+--------------------------------------------------------------------------- */
+
+.field {
+  height: 2.75rem;
+  width: 100%;
+  border: 1px solid hsl(var(--input));
+  border-radius: 0.5rem;
+  background: #f9fafb;
+  padding: 0 0.875rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.dark .field {
+  background: color-mix(in srgb, #fff 5%, transparent);
+}
+
+.field:focus {
+  outline: none;
+  border-color: hsl(var(--ring));
+}
+
+.field-textarea {
+  height: 9rem;
+  margin: 0.5rem 0;
+  padding: 0.75rem 0.875rem;
+  resize: vertical;
+}
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 2.75rem;
+  width: 7rem;
+  border-radius: 9999px;
+  background: #111827;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.submit-btn:hover {
+  background: #030712;
+  transform: scale(1.1);
+}
+
+.submit-btn:active {
+  transform: scale(1.05);
+}
+
+.dark .submit-btn {
+  background: #ffffff1a;
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------------
+   Bottom dock
+--------------------------------------------------------------------------- */
+
+.dock-backdrop {
+  position: fixed;
+  bottom: 0;
+  inset-inline: 0;
+  height: 4rem;
+  background: hsl(var(--background));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to top, black, transparent);
+  mask-image: linear-gradient(to top, black, transparent);
   pointer-events: none;
 }
 
-.status-dot {
+.dock {
+  pointer-events: none;
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 30;
+  margin-inline: auto;
+  margin-bottom: 1rem;
+  height: 3.5rem;
+  max-height: 3.5rem;
+  transform-origin: bottom;
+}
+
+.dock-pill {
+  pointer-events: auto;
   position: relative;
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  background: #34d399;
+  z-index: 50;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 100%;
+  min-height: 100%;
+  border-radius: 9999px;
+  border: 1px solid rgb(0 0 0 / 0.06);
+  background: hsl(var(--background));
+  padding: 0 0.5rem;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.03),
+    0 2px 4px rgb(0 0 0 / 0.05),
+    0 12px 24px rgb(0 0 0 / 0.05);
+}
+
+.dark .dock-pill {
+  border-color: rgb(255 255 255 / 0.1);
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.03),
+    0 2px 4px rgb(0 0 0 / 0.05),
+    0 12px 24px rgb(0 0 0 / 0.05),
+    0 -20px 80px -20px rgb(255 255 255 / 0.12) inset;
+}
+
+.dock-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  color: hsl(var(--foreground));
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dock-item:hover {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+.dock-separator {
+  width: 1px;
+  height: 100%;
   flex-shrink: 0;
+  background: hsl(var(--border));
+  margin-inline: 0.25rem;
 }
 
-.status-dot::after {
-  content: "";
-  position: absolute;
-  inset: -3px;
-  border-radius: 999px;
-  border: 1px solid #34d399;
-  animation: statusPulse 2.4s ease-out infinite;
+/* ---------------------------------------------------------------------------
+   Scroll reveal
+--------------------------------------------------------------------------- */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(6px);
+  filter: blur(6px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    filter 0.6s ease;
 }
 
-@keyframes statusPulse {
-  0% {
-    transform: scale(0.6);
-    opacity: 1;
-  }
-  70%,
-  100% {
-    transform: scale(1.8);
-    opacity: 0;
-  }
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .status-dot::after {
-    animation: none;
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 }

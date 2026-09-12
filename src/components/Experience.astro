@@ -1,39 +1,53 @@
 ---
 import { experience } from '../data/portfolio';
+import Icon from './Icon.astro';
 ---
 
-<section id="experience" class="border-y border-border bg-surface/40">
-  <div class="container-site py-20 md:py-28">
-    <div class="mb-12">
-      <p class="eyebrow mb-4">04 — Experience</p>
-      <h2 class="section-title mb-3">Where I've worked.</h2>
-      <p class="prose-body max-w-md text-sm">
-        Internships and roles where I've built real things, mentored people, and shipped production code.
-      </p>
-    </div>
+<section id="experience" class="mx-auto w-full max-w-2xl">
+  <h2 class="section-heading mb-4">Work Experience</h2>
 
-    <ol class="space-y-10">
-      {
-        experience.map((item) => (
-          <li class="grid gap-2 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-12">
-            <div class="md:border-r md:border-border md:pr-8">
-              <h3 class="text-lg font-semibold tracking-tight text-fg">{item.title}</h3>
-              <p class="mb-1 text-accent">{item.organization}</p>
-              <p class="font-mono text-xs text-faint">{item.period}</p>
+  <div class="min-h-0 space-y-3">
+    {
+      experience.map((item, i) => (
+        <details
+          class="experience-card reveal rounded-lg bg-card p-3 text-card-foreground"
+          name="experience"
+          style={`transition-delay:${i * 60}ms`}
+        >
+          <summary class="group">
+            <span class="avatar avatar-row" aria-hidden="true">{item.organization.charAt(0)}</span>
+            <div class="ml-4 flex-grow">
+              <p class="text-sm font-semibold leading-none">{item.organization}</p>
+              <p class="mt-1 text-xs text-muted-foreground">{item.title}</p>
             </div>
-            <ul class="space-y-3 md:pt-0.5">
+            <span class="flex items-center gap-2 text-right">
+              <span class="text-nowrap text-xs tabular-nums sm:text-sm">{item.period}</span>
+              <Icon
+                name="chevron-right"
+                size={16}
+                iconClass="chevron text-muted-foreground opacity-60 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+              />
+            </span>
+          </summary>
+
+          <div class="ml-4 mt-3">
+            <ul class="ml-4 list-outside list-disc space-y-1 text-sm">
               {
-                item.highlights.map((highlight) => (
-                  <li class="prose-body relative flex gap-3 text-[0.95rem]">
-                    <span class="mt-[0.7em] h-px w-3 flex-shrink-0 bg-accent/60" aria-hidden="true"></span>
-                    <span>{highlight}</span>
-                  </li>
-                ))
+                item.highlights.map((highlight) => <li>{highlight}</li>)
               }
             </ul>
-          </li>
-        ))
-      }
-    </ol>
+
+            <div class="mt-6 flex flex-wrap items-center gap-2">
+              <span class="text-xs font-medium sm:text-sm">Technologies:</span>
+              {
+                item.stack.map((tech) => (
+                  <span class="chip-experience">{tech}</span>
+                ))
+              }
+            </div>
+          </div>
+        </details>
+      ))
+    }
   </div>
 </section>

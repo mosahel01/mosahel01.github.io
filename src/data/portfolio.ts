@@ -29,6 +29,7 @@ export interface ExperienceItem {
   organization: string;
   period: string;
   highlights: string[];
+  stack: string[];
 }
 
 export interface SocialLink {
@@ -44,10 +45,11 @@ export const profile = {
   name: 'Mohd Sahil',
   shortName: 'mo.',
   firstName: 'Sahil',
+  initials: 'MS',
   role: 'Full-Stack & Backend Engineer',
-  tagline: 'I design and build web and backend systems that stay fast, reliable, and simple to maintain.',
+  tagline: 'I build web and backend systems. Mostly the parts nobody sees.',
   location: 'India',
-  availability: 'Open to backend engineering roles & internships',
+  availability: 'Open to backend roles & internships',
   email: 'mos.sahil01@gmail.com',
   github: 'https://github.com/mosahel01',
   githubHandle: 'mosahel01',
@@ -68,7 +70,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: 'Backend',
     icon: 'backend',
-    description: 'APIs, services, and async pipelines',
+    description: 'APIs, services, pipelines',
     skills: [
       { name: 'Go', url: 'https://go.dev/' },
       { name: 'Node.js', url: 'https://nodejs.org/' },
@@ -127,18 +129,17 @@ export const skillGroups: SkillGroup[] = [
 export const projects: Project[] = [
   {
     title: 'Bus Reservation System',
-    tagline: 'Full-stack bus ticketing platform',
+    tagline: 'Full-stack bus ticketing',
     description:
-      'A central ticketing platform for bus travel: users browse routes, check seat availability, and reserve seats through a clean booking flow. Fare calculation and scheduling are handled server-side with a relational schema.',
+      'A complete booking flow for bus travel made with Java: browse routes, pick a seat, pay, done. Scheduling and fare math happen server-side on a proper relational schema.',
     stack: ['Java', 'Spring Boot', 'Hibernate', 'MySQL'],
     repoUrl: 'https://github.com/mosahel01/Bus-Reservation-System',
-    featured: true,
   },
   {
     title: 'Hospital Management System',
-    tagline: 'Spring Boot clinical workflow system',
+    tagline: 'Spring Boot + Hibernate',
     description:
-      'A hospital management system built with Spring Boot and Java to streamline administrative and clinical workflows, modeled with Hibernate for data persistence and designed for scale.',
+      'Spring Boot and Hibernate under the hood to keep administrative and clinical workflows from turning into paperwork chaos.',
     stack: ['Java', 'Spring Boot', 'Hibernate'],
     repoUrl: 'https://github.com/mosahel01/Hospital-Management-System',
   },
@@ -146,7 +147,7 @@ export const projects: Project[] = [
     title: 'Reactonic',
     tagline: 'Next.js AI experiments',
     description:
-      'A Next.js + TypeScript playground for AI experiments, exploring server-rendered data flow and AI API integration. Mostly just fetch(), roughly. Research for the next big thing.',
+      'A Next.js + TypeScript sandbox where I poke at AI APIs. Mostly just fetch(), frankly, but it taught me a lot about server-side rendering.',
     stack: ['Next.js', 'TypeScript', 'AI APIs'],
     repoUrl: 'https://github.com/mosahel01/Reactonic',
   },
@@ -154,15 +155,15 @@ export const projects: Project[] = [
     title: 'ThumbLab',
     tagline: 'AI thumbnail generator',
     description:
-      'A thumbnail generator built with FastAPI and React using the OpenAI SDK, routed through a unified AI gateway pipeline with dynamic prompt elements.',
+      'FastAPI service that turns text prompts into thumbnails via the OpenAI SDK, with React on the front and one shared gateway for all AI calls.',
     stack: ['Python', 'FastAPI', 'React'],
     repoUrl: 'https://github.com/mosahel01/ThumbLab',
   },
   {
     title: 'JsonPlaceholder-Service',
-    tagline: 'REST API consumer service',
+    tagline: 'REST API wrapper',
     description:
-      'A FastAPI service that wraps the JSONPlaceholder API and showcases backend fundamentals: routing, request validation, filtering, error handling, and pragmatic RESTful design.',
+      'A FastAPI layer over the JSONPlaceholder API that got me comfortable with the boring-but-important stuff: routing, validation, filtering, clean errors.',
     stack: ['Python', 'FastAPI'],
     repoUrl: 'https://github.com/mosahel01/JsonPlaceholder-Service',
   },
@@ -170,7 +171,7 @@ export const projects: Project[] = [
     title: 'py-init',
     tagline: 'Python project bootstrapper',
     description:
-      'A CLI automation tool that scaffolds modern Python projects from a template, cutting out the manual boilerplate and the time lost staring at a blank directory.',
+      'One command that scaffolds a Python project with the boilerplate I always set up by hand. Built because I was tired of doing it by hand.',
     stack: ['Python'],
     repoUrl: 'https://github.com/mosahel01/py-init',
   },
@@ -182,30 +183,33 @@ export const experience: ExperienceItem[] = [
     organization: 'Codexalabs',
     period: 'Jun 2025 — Sep 2025',
     highlights: [
-      'Built high-performance, responsive React interfaces using Redux and Context API for efficient state management.',
-      'Collaborated on integrating PHP-based RESTful APIs into seamless full-stack workflows.',
-      'Focused on UI optimization and shipping production-ready features for scalable web applications.',
+      'Built responsive React interfaces with Redux and the Context API for state management.',
+      'Helped glue PHP-based REST APIs into the frontend without everything catching fire.',
+      'Spent a lot of time on UI polish and getting features to actually ship.',
     ],
+    stack: ['React', 'Redux', 'PHP'],
   },
   {
     title: 'Web Developer',
     organization: 'SGI, Sikar',
     period: 'May 2024 — Aug 2024',
     highlights: [
-      'Mentored a cohort of 30+ junior students on frontend fundamentals and modern web practices.',
-      'Ran 1-on-1 debugging sessions and code reviews to raise student code quality.',
-      'Turned tricky concepts like asynchronous JavaScript and responsive design into digestible learning paths.',
+      'Mentored a cohort of 30+ junior students through frontend fundamentals.',
+      'Ran 1-on-1 debugging sessions and code reviews to help people write better code.',
+      'Found ways to explain async JavaScript and responsive design that actually landed.',
     ],
+    stack: ['JavaScript', 'HTML', 'CSS', 'React'],
   },
   {
     title: 'Digital Marketing Intern',
     organization: 'SEC · Joyaholiday.com',
     period: 'Jun 2023 — Sep 2023',
     highlights: [
-      'Managed end-to-end digital marketing workflows and web traffic analysis.',
-      'Used analytics tooling to monitor campaign metrics and iterate on messaging for conversion.',
-      'Coordinated technical optimization of digital assets with internal stakeholders.',
+      'Ran digital marketing workflows and kept an eye on web traffic.',
+      'Tracked campaign metrics and nudged messaging toward what converted.',
+      'Coordinated with stakeholders on tech changes to our digital assets.',
     ],
+    stack: ['HTML', 'CSS', 'Workflow automation'],
   },
 ];
 
@@ -217,5 +221,5 @@ export const socials: SocialLink[] = [
 
 export const status = {
   label: 'Available for work',
-  detail: 'Backend engineering roles, internships, and meaningful side projects.',
+  detail: 'Looking for backend roles, internships, and interesting projects.',
 } as const;

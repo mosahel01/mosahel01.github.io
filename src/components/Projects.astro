@@ -3,97 +3,46 @@ import { projects, profile } from '../data/portfolio';
 import Icon from './Icon.astro';
 ---
 
-<section id="projects" class="container-site py-20 md:py-28">
-  <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-    <div>
-      <p class="eyebrow mb-4">03 — Projects</p>
-      <h2 class="section-title mb-3">Things I've built.</h2>
-      <p class="prose-body max-w-md text-sm">
-        A selection of the systems I've designed and shipped. Source for everything is on GitHub.
-      </p>
-    </div>
-    <a href={profile.github} target="_blank" rel="noopener noreferrer" class="link-underline">
-      <Icon name="github" size={15} />
-      More on GitHub
-    </a>
+<section id="projects" class="w-full py-8">
+  <div class="mb-4 flex flex-col items-center gap-1 text-center">
+    <h2 class="showcase-heading">My Projects</h2>
   </div>
 
-  <div class="flex flex-col gap-5">
+  <div class="mx-auto grid max-w-[800px] gap-4 px-6">
     {
-      projects
-        .filter((project) => project.featured)
-        .map((project) => (
-          <article class="card card-hover grid gap-6 p-6 md:grid-cols-[auto_minmax(0,1fr)] md:items-center md:p-8">
-            <div class="hidden md:block">
-              <span class="eyebrow">Featured</span>
-            </div>
-            <div>
-              <div class="mb-3 flex flex-wrap gap-2 md:hidden">
-                <span class="chip">Featured</span>
-              </div>
-              <h3 class="mb-2 text-xl font-semibold tracking-tight text-fg md:text-2xl">
-                {project.title}
-              </h3>
-              <p class="mb-2 font-mono text-sm text-accent">{project.tagline}</p>
-              <p class="prose-body mb-5 max-w-2xl text-[0.95rem]">{project.description}</p>
-              <ul class="mb-6 flex flex-wrap gap-2">
-                {
-                  project.stack.map((tech) => (
-                    <li>
-                      <span class="chip">{tech}</span>
-                    </li>
-                  ))
-                }
-              </ul>
-              <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary h-10">
-                <Icon name="github" size={15} />
-                Source
-                <Icon name="external" size={13} iconClass="text-faint" />
-              </a>
-            </div>
-          </article>
-        ))
+      projects.map((project, i) => (
+        <article
+          class="project-card reveal"
+          style={`transition-delay:${80 + i * 60}ms`}
+        >
+          <h3 class="text-xl font-semibold tracking-tight">{project.title}</h3>
+          <p class="text-pretty text-sm">
+            {project.description}
+          </p>
+          <div class="my-4 flex flex-wrap gap-2">
+            {
+              project.stack.map((tech) => (
+                <span class="chip-project">{tech}</span>
+              ))
+            }
+          </div>
+          <a
+            href={project.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary mr-2 w-fit"
+          >
+            <Icon name="github" size={16} />
+            GitHub
+          </a>
+        </article>
+      ))
     }
+  </div>
 
-    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        projects
-          .filter((project) => !project.featured)
-          .map((project) => (
-            <article class="card card-hover flex flex-col p-5">
-              <p class="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-faint">{project.tagline}</p>
-              <h3 class="mb-2 mt-3 text-lg font-semibold tracking-tight text-fg">
-                <a
-                  href={project.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="transition-colors hover:text-accent"
-                >
-                  {project.title}
-                </a>
-              </h3>
-              <p class="prose-body mb-5 flex-1 text-sm">{project.description}</p>
-              <ul class="mb-5 flex flex-wrap gap-2">
-                {
-                  project.stack.map((tech) => (
-                    <li>
-                      <span class="chip">{tech}</span>
-                    </li>
-                  ))
-                }
-              </ul>
-              <a
-                href={project.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 font-mono text-xs text-muted transition-colors hover:text-accent"
-              >
-                Source
-                <Icon name="external" size={13} />
-              </a>
-            </article>
-          ))
-      }
-    </div>
+  <div class="mt-5 flex flex-col items-center justify-center gap-2 text-center">
+    <a href={profile.github} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+      View all projects on GitHub
+    </a>
   </div>
 </section>
