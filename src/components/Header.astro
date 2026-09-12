@@ -1,0 +1,129 @@
+---
+import { navLinks, profile } from '../data/portfolio';
+import Icon from './Icon.astro';
+
+const { shortName, github, githubHandle } = profile;
+---
+
+<header class="fixed inset-x-0 top-0 z-50">
+  <nav
+    id="site-nav"
+    class="site-nav transition-all duration-300"
+    aria-label="Main navigation"
+  >
+    <div class="container-site flex h-16 items-center justify-between">
+      <a
+        href="#top"
+        class="font-mono text-sm font-semibold tracking-tight text-fg transition-colors hover:text-accent"
+        aria-label={`${profile.name} — back to top`}
+      >
+        {shortName}
+        <span class="text-accent">/</span>
+      </a>
+
+      <div class="hidden items-center gap-1 md:flex">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="rounded-md px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ml-3 inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-fg"
+        >
+          <Icon name="github" size={16} />
+
+          <span>{githubHandle}</span>
+        </a>
+      </div>
+
+      <button
+        id="menu-toggle"
+        class="relative z-50 inline-flex h-10 w-10 items-center justify-center rounded-md text-fg transition-colors hover:text-accent md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <Icon name="menu" size={22} iconClass="menu-icon" />
+        <Icon name="close" size={22} iconClass="close-icon hidden" />
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="md:hidden"
+    hidden
+  >
+    <div
+      class="fixed inset-0 top-16 z-40 flex flex-col gap-1 border-t border-border bg-bg/95 px-6 pb-10 pt-6 backdrop-blur-md"
+    >
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="rounded-lg px-3 py-3 text-lg font-medium tracking-tight text-fg transition-colors hover:bg-accent-soft hover:text-accent"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href={github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 inline-flex items-center gap-2 rounded-lg border border-border px-3 py-3 text-base font-medium text-fg transition-colors hover:border-accent hover:text-accent"
+      >
+        <Icon name="github" size={18} />
+        GitHub — {githubHandle}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('#menu-toggle');
+  const menu = document.querySelector<HTMLElement>('#mobile-menu');
+  const nav = document.querySelector<HTMLElement>('#site-nav');
+  let isOpen = false;
+
+  const setOpen = (open: boolean) => {
+    isOpen = open;
+    if (!toggle || !menu) return;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (open) {
+      menu.hidden = false;
+      toggle.querySelector('.menu-icon')?.classList.add('hidden');
+      toggle.querySelector('.close-icon')?.classList.remove('hidden');
+    } else {
+      menu.hidden = true;
+      toggle.querySelector('.menu-icon')?.classList.remove('hidden');
+      toggle.querySelector('.close-icon')?.classList.add('hidden');
+    }
+  };
+
+  toggle?.addEventListener('click', () => setOpen(!isOpen));
+
+  menu?.addEventListener('click', (event) => {
+    const target = event.target as Element | null;
+    if (target?.closest('a')) setOpen(false);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen) setOpen(false);
+  });
+
+  const onScroll = () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>

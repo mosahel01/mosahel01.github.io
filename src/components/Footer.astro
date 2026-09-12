@@ -1,0 +1,54 @@
+---
+import { profile } from '../data/portfolio';
+import Icon from './Icon.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border">
+  <div class="container-site flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
+    <p class="font-mono text-sm text-fg">
+      {profile.shortName}
+      <span class="text-accent">/</span>
+      <span class="text-faint"> © {year} {profile.name}</span>
+    </p>
+
+    <p class="font-mono text-xs text-faint">
+      Built with Astro, styled with care. No trackers, no JavaScript churn.
+    </p>
+
+    <ul class="flex items-center gap-2">
+      <li>
+        <a
+          href={profile.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid h-10 w-10 place-items-center rounded-lg text-muted transition-colors hover:bg-accent-soft hover:text-accent"
+          aria-label="GitHub"
+        >
+          <Icon name="github" size={18} />
+        </a>
+      </li>
+      <li>
+        <a
+          href={profile.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="grid h-10 w-10 place-items-center rounded-lg text-muted transition-colors hover:bg-accent-soft hover:text-accent"
+          aria-label="LinkedIn"
+        >
+          <Icon name="linkedin" size={18} />
+        </a>
+      </li>
+      <li>
+        <a
+          href={`mailto:${profile.email}`}
+          class="grid h-10 w-10 place-items-center rounded-lg text-muted transition-colors hover:bg-accent-soft hover:text-accent"
+          aria-label="Email"
+        >
+          <Icon name="mail" size={18} />
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>

@@ -1,0 +1,39 @@
+---
+import { experience } from '../data/portfolio';
+---
+
+<section id="experience" class="border-y border-border bg-surface/40">
+  <div class="container-site py-20 md:py-28">
+    <div class="mb-12">
+      <p class="eyebrow mb-4">04 — Experience</p>
+      <h2 class="section-title mb-3">Where I've worked.</h2>
+      <p class="prose-body max-w-md text-sm">
+        Internships and roles where I've built real things, mentored people, and shipped production code.
+      </p>
+    </div>
+
+    <ol class="space-y-10">
+      {
+        experience.map((item) => (
+          <li class="grid gap-2 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-12">
+            <div class="md:border-r md:border-border md:pr-8">
+              <h3 class="text-lg font-semibold tracking-tight text-fg">{item.title}</h3>
+              <p class="mb-1 text-accent">{item.organization}</p>
+              <p class="font-mono text-xs text-faint">{item.period}</p>
+            </div>
+            <ul class="space-y-3 md:pt-0.5">
+              {
+                item.highlights.map((highlight) => (
+                  <li class="prose-body relative flex gap-3 text-[0.95rem]">
+                    <span class="mt-[0.7em] h-px w-3 flex-shrink-0 bg-accent/60" aria-hidden="true"></span>
+                    <span>{highlight}</span>
+                  </li>
+                ))
+              }
+            </ul>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+---
+import { skillGroups } from '../data/portfolio';
+import Icon from './Icon.astro';
+import type { SkillGroup } from '../data/portfolio';
+
+const groupIcon = {
+  backend: 'terminal',
+  database: 'database',
+  infrastructure: 'box',
+  tools: 'wrench',
+} as const;
+---
+
+<section id="skills" class="border-y border-border bg-surface/40">
+  <div class="container-site py-20 md:py-28">
+    <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="eyebrow mb-4">02 — Skills</p>
+        <h2 class="section-title mb-3">Tech stack.</h2>
+        <p class="prose-body max-w-md text-sm">
+          The tools I reach for when building services, storing data, shipping containers, and automating
+          everything in between.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        skillGroups.map((group: SkillGroup) => (
+          <div class="card card-hover flex flex-col p-5">
+            <div class="mb-4 flex items-center gap-3">
+              <span class="grid h-9 w-9 place-items-center rounded-lg border border-border bg-accent-soft text-accent">
+                <Icon name={groupIcon[group.icon]} size={18} />
+              </span>
+              <div>
+                <h3 class="text-[0.95rem] font-semibold tracking-tight text-fg">{group.title}</h3>
+                <p class="font-mono text-[0.68rem] text-faint">{group.description}</p>
+              </div>
+            </div>
+            <ul class="flex flex-wrap gap-2">
+              {
+                group.skills.map((skill) => (
+                  <li>
+                    <a href={skill.url} target="_blank" rel="noopener noreferrer" class="chip">
+                      {skill.name}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

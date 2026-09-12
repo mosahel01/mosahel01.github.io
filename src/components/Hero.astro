@@ -1,0 +1,60 @@
+---
+import { profile, status } from '../data/portfolio';
+import Icon from './Icon.astro';
+
+const { name, role, github, githubHandle } = profile;
+---
+
+<section id="top" class="relative flex min-h-[92svh] items-center overflow-hidden">
+  <div class="bg-grid absolute inset-0" aria-hidden="true"></div>
+
+  <div class="container-site relative py-24 md:py-32">
+    <p class="eyebrow mb-6 flex items-center gap-2.5">
+      <span class="status-dot" aria-hidden="true"></span>
+      {status.label} · {profile.location}
+    </p>
+
+    <h1 class="mb-5 text-[clamp(2.6rem,7vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.04em] text-fg">
+      Hi, I'm {name}.
+    </h1>
+
+    <p class="mb-3 text-lg font-medium text-fg/90 md:text-xl">
+      {role}, building efficient web and backend systems.
+    </p>
+
+    <p class="prose-body mb-10 max-w-xl text-[1.05rem]">
+      Focused on the request-to-response loop: distributed services, async pipelines, and the infrastructure that
+      keeps them fast. Also a computer science student who ships things rather than just studying them.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-3">
+      <a href="#projects" class="btn btn-primary">
+        View my work
+        <Icon name="arrow-right" size={16} />
+      </a>
+      <a href="#contact" class="btn btn-secondary">
+        Get in touch
+      </a>
+      <a
+        href={github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="link-underline pl-1"
+      >
+        <Icon name="github" size={15} />
+        {githubHandle}
+      </a>
+    </div>
+
+    <dl class="mt-14 flex flex-wrap gap-x-10 gap-y-4 font-mono text-xs text-faint">
+      <div class="flex items-center gap-2">
+        <dt class="uppercase tracking-wide">Stack</dt>
+        <dd>Go · Node.js · Java · Python</dd>
+      </div>
+      <div class="flex items-center gap-2">
+        <dt class="uppercase tracking-wide">Focus</dt>
+        <dd>Backend systems · async pipelines · infra performance</dd>
+      </div>
+    </dl>
+  </div>
+</section>
