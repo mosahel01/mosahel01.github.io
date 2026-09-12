@@ -16,18 +16,16 @@ import Icon from './Icon.astro';
         >
           <summary class="group">
             <span class="avatar avatar-row" aria-hidden="true">{item.organization.charAt(0)}</span>
-            <div class="ml-4 flex-grow">
+            <Icon
+              name="chevron-right"
+              size={16}
+              iconClass="chevron text-muted-foreground transition-transform duration-300"
+            />
+            <div class="ml-2 flex-grow">
               <p class="text-sm font-semibold leading-none">{item.organization}</p>
               <p class="mt-1 text-xs text-muted-foreground">{item.title}</p>
             </div>
-            <span class="flex items-center gap-2 text-right">
-              <span class="text-nowrap text-xs tabular-nums sm:text-sm">{item.period}</span>
-              <Icon
-                name="chevron-right"
-                size={16}
-                iconClass="chevron text-muted-foreground opacity-60 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
-              />
-            </span>
+            <span class="text-nowrap text-xs tabular-nums sm:text-sm">{item.period}</span>
           </summary>
 
           <div class="ml-4 mt-3">
