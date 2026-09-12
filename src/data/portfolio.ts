@@ -189,10 +189,10 @@ export const experience: ExperienceItem[] = [
         ],
         stack: ['React', 'Redux', 'PHP'],
     },
-    {
-        title: 'Web Developer',
-        organization: 'SGI, Sikar',
-        period: 'May 2024 - Aug 2024',
+{
+    title: 'Web Developer Intern',
+    organization: 'SGI, Sikar',
+    period: 'May 2024 - Aug 2024',
         highlights: [
             'Mentored a cohort of 30+ junior students through frontend fundamentals.',
             'Ran 1-on-1 debugging sessions and code reviews to help people write better code.',
@@ -200,10 +200,10 @@ export const experience: ExperienceItem[] = [
         ],
         stack: ['JavaScript', 'HTML', 'CSS', 'React'],
     },
-    {
-        title: 'Digital Marketing Intern',
-        organization: 'SEC · Joyaholiday.com',
-        period: 'Jun 2023 - Sep 2023',
+{
+    title: 'Web Developer Intern',
+    organization: 'SEC · Joyaholiday.com',
+    period: 'Jun 2023 - Sep 2023',
         highlights: [
             'Ran digital marketing workflows and kept an eye on web traffic.',
             'Tracked campaign metrics and nudged messaging toward what converted.',
