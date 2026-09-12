@@ -196,6 +196,7 @@
 
 .experience-card {
   display: flex;
+  flex-direction: column;
   border-radius: 0.5rem;
   background: hsl(var(--card));
   color: hsl(var(--card-foreground));
