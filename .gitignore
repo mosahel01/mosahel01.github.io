@@ -24,4 +24,5 @@ pnpm-debug.log*
 # editors
 .vscode/
 .idea/
-*.swp
+*.swp# local development tooling
+.github/hooks/
