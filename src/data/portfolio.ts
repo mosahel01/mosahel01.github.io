@@ -181,7 +181,7 @@ export const experience: ExperienceItem[] = [
     {
         title: 'Frontend Developer',
         organization: 'Codexalabs',
-        period: 'Jun 2025 — Sep 2025',
+        period: 'Jun 2025 - Sep 2025',
         highlights: [
             'Built responsive React interfaces with Redux and the Context API for state management.',
             'Helped glue PHP-based REST APIs into the frontend without everything catching fire.',
@@ -192,7 +192,7 @@ export const experience: ExperienceItem[] = [
     {
         title: 'Web Developer',
         organization: 'SGI, Sikar',
-        period: 'May 2024 — Aug 2024',
+        period: 'May 2024 - Aug 2024',
         highlights: [
             'Mentored a cohort of 30+ junior students through frontend fundamentals.',
             'Ran 1-on-1 debugging sessions and code reviews to help people write better code.',
@@ -203,7 +203,7 @@ export const experience: ExperienceItem[] = [
     {
         title: 'Digital Marketing Intern',
         organization: 'SEC · Joyaholiday.com',
-        period: 'Jun 2023 — Sep 2023',
+        period: 'Jun 2023 - Sep 2023',
         highlights: [
             'Ran digital marketing workflows and kept an eye on web traffic.',
             'Tracked campaign metrics and nudged messaging toward what converted.',

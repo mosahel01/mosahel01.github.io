@@ -1,6 +1,6 @@
 <div align="center">
 
-# Mohd Sahil — Portfolio
+# Mohd Sahil - Portfolio
 
 **Full-Stack & Backend Engineer · Personal Portfolio Website**
 
@@ -39,12 +39,12 @@ This repository contains the personal developer portfolio of **Mohd Sahil**, reb
 web application with **Astro**.
 
 The site is a single-page, dark-mode-first portfolio that communicates a full-stack & backend engineering focus:
-distributed systems, async pipelines, and infrastructure performance. It is intentionally restrained — clean
+distributed systems, async pipelines, and infrastructure performance. It is intentionally restrained - clean
 typography, a consistent design-token system, and no unnecessary client-side JavaScript.
 
 The entire site is generated as **static HTML + CSS** at build time. The only JavaScript on the page is a few
 lines that power the accessible mobile navigation menu. There is no React, no state library, and no heavy
-framework bundled in the browser — per-page zero JS hydration.
+framework bundled in the browser - per-page zero JS hydration.
 
 ### What migrated from the old site
 
@@ -55,7 +55,7 @@ preserved and migrated:
 - Skills data, re-organized into **Backend / Databases / Infrastructure / Tools**
 - Experience / internship timeline (Codexalabs, SGI Sikar, SEC)
 - Projects, expanded with the real pinned repos from the GitHub profile
-- The dark, technical visual direction — now rebuilt with a proper design-token system
+- The dark, technical visual direction - now rebuilt with a proper design-token system
 
 ---
 
@@ -73,7 +73,7 @@ preserved and migrated:
 
 **Why Astro?** Every section of the portfolio is static content. Astro compiles it into plain HTML/CSS with no
 JS payload, which makes the site essentially instant to load. Component-based authoring keeps the code easy to
-maintain, and React is deliberately *not* used — there is no interactive state worth hydrating.
+maintain, and React is deliberately *not* used - there is no interactive state worth hydrating.
 
 ---
 
@@ -94,11 +94,11 @@ https://mosahel01.github.io
 
 The site content is **centralized in one data file** (`src/data/portfolio.ts`). Components receive typed data
 from that file and render markup. This means updating a project, skill, or link rarely requires touching
-component code — content and presentation stay cleanly separated.
+component code - content and presentation stay cleanly separated.
 
 Design tokens (colors, surfaces, borders, accent) live as CSS custom properties in
 `src/styles/global.css`, mapped into Tailwind's theme. Recoloring the entire site is a matter of editing those
-variables — including automatic light/dark variants via `prefers-color-scheme` (dark is the default).
+variables - including automatic light/dark variants via `prefers-color-scheme` (dark is the default).
 
 Astro is configured in `astro.config.mjs` with `site: 'https://mosahel01.github.io'`. Because this repository
 uses the `<username>.github.io` naming convention, the site is served from the **domain root** and `base` must
@@ -139,7 +139,7 @@ remain `'/'` (do not set a project-style `base`).
 ├── .gitignore
 ├── astro.config.mjs            # Astro + Tailwind config, site/base
 ├── package.json
-├── package-lock.json           # Keep committed — CI installs with npm ci
+├── package-lock.json           # Keep committed - CI installs with npm ci
 ├── tsconfig.json               # extends astro/tsconfigs/strict
 └── README.md
 ```
@@ -151,7 +151,7 @@ remain `'/'` (do not set a project-style `base`).
 ### Prerequisites
 
 - **Node.js ≥ 22** (20.3+ works; CI uses 22 in `deploy.yml`)
-- **npm** (the repo uses `npm` — keep it consistent, don't mix package managers)
+- **npm** (the repo uses `npm` - keep it consistent, don't mix package managers)
 
 **Requirements:**
 ```text
@@ -192,7 +192,7 @@ npm run preview    # sanity-check the built site
 
 ## GitHub Pages Deployment
 
-Deployment is fully automated with **GitHub Actions** — there is **no** committed build output in the repo.
+Deployment is fully automated with **GitHub Actions** - there is **no** committed build output in the repo.
 
 ### Pipeline
 
@@ -231,12 +231,12 @@ After that, every push to `main` deploys automatically. You can also trigger a d
 ```js
 export default defineConfig({
   site: 'https://mosahel01.github.io',
-  // base stays "/" — <username>.github.io repos are served from the domain root.
+  // base stays "/" - <username>.github.io repos are served from the domain root.
 });
 ```
 
 - `site` produces absolute canonical/OG URLs.
-- **Do not** set `base: '/mosahel01.github.io'` — that is only for *project* pages repositories
+- **Do not** set `base: '/mosahel01.github.io'` - that is only for *project* pages repositories
   (`<user>.github.io/<repo>`), not for a `<username>.github.io` user page.
 
 ---
@@ -272,7 +272,7 @@ the same file.
 ```
 
 3. To make it the featured (larger, top) card, add `featured: true`.
-4. The card, tags, and links render automatically — no component changes needed.
+4. The card, tags, and links render automatically - no component changes needed.
 
 ### Modifying styling
 
@@ -315,7 +315,7 @@ the same file.
 
 | Problem                                            | Solution                                                                        |
 | -------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `npm run dev` fails on port 4321                   | Port in use — pass `-- --port 4322` or stop the other server.                   |
+| `npm run dev` fails on port 4321                   | Port in use - pass `-- --port 4322` or stop the other server.                   |
 | `npm run build` missing styles                     | Ensure `@tailwindcss/vite` is in `astro.config.mjs` `vite.plugins`.              |
 | Deploy fails at install step                       | Confirm `package-lock.json` is committed and matches `package.json`.            |
 | Site 404s after deploy                             | Settings → Pages → Source must be **GitHub Actions** (not branch/deploy file).  |
@@ -329,7 +329,7 @@ the same file.
 
 - Feature/redesign work happens on feature branches (e.g. `redesign/astro-portfolio`), merged into `main`.
 - Production build output (`dist/`, `.astro/`, `node_modules/`) is **gitignored** and never committed.
-- `package-lock.json` **is** committed — CI (and your co-developers) install with `npm ci`.
+- `package-lock.json` **is** committed - CI (and your co-developers) install with `npm ci`.
 - Suggested commits are small and focused: `feat:`, `fix:`, `chore:`, `docs:`, `style:`.
 
 ```bash

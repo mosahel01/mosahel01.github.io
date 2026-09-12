@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------------------------------------------------------------------------
-   Design tokens — light by default, dark via the `.dark` class on <html>
+   Design tokens - light by default, dark via the `.dark` class on <html>
 --------------------------------------------------------------------------- */
 
 :root {
